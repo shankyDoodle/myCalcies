@@ -4,6 +4,26 @@
     <meta charset="UTF-8">
     <title>Evolution of Calculator</title>
 
+    <style>
+
+        .mybutton{
+            float: left;
+            width: 100%;
+            height: 60px;
+            margin: 10px 0;
+            border: 1px solid gray;
+            text-align: center;
+            line-height: 60px;
+            border-radius: 20px;
+            transition: all ease .8s;
+            background: #fff;
+        }
+
+        .mybutton:hover{
+            cursor: pointer;
+            filter: invert(1);
+        }
+    </style>
     <script>
         function fOpenStoneCalc() {
           window.open('./stone.html');
@@ -20,9 +40,9 @@
 </head>
 <body>
 
-<div onclick="fOpenStoneCalc()">Stone Age Calc</div>
-<div onclick="fOpenMiddleCalc()">Middle Age Calc</div>
-<div onclick="fOpenModernCalc()">Modern Age Calc</div>
+<div class="mybutton" onclick="fOpenStoneCalc()">Stone Age Calc</div>
+<div class="mybutton" onclick="fOpenMiddleCalc()">Middle Age Calc</div>
+<div class="mybutton" onclick="fOpenModernCalc()">Modern Age Calc</div>
 
 </body>
 </html>
