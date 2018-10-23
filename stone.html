@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Calculator</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100em;
+            width: 100em;
+        }
+
+        #myApp {
+            border: 5px solid gray;
+            padding: 5px;
+            float: left;
+            margin-left: 35%;
+            margin-top: 15%;
+        }
+
+        #nameWrapper {
+            float: left;
+            width: 100%;
+            border: 1px solid;
+            margin: 2px 0;
+        }
+
+        .myAppName {
+            width: 100%;
+            height: 50px;
+            line-height: 40px;
+            text-align: center;
+        }
+
+        #inputWrapper {
+            float: left;
+            width: 100%;
+            border: 1px solid;
+            margin: 2px 0;
+        }
+
+        #myInput {
+            width: calc(100% - 10px);
+            height: 30px;
+            line-height: 30px;
+            border: none;
+            font-size: 20px;
+            padding: 0 5px;
+            text-align: right;
+        }
+
+        #buttonsWrapper {
+            float: left;
+            width: 100%;
+            margin: 2px 0;
+            text-align: center;
+            border: 1px solid;
+        }
+
+        .myButton {
+            width: 50px;
+            height: 5em;
+            font-size: 25px;
+            margin: 2px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+    </style>
+    <script>
+      let bIsCalcOn = false;
+
+      function fUpdateInputField(sVal) {
+        if (!bIsCalcOn) {
+          return;
+        }
+        document.getElementById('myInput').value += sVal;
+      }
+
+      function fOnCalcClicked() {
+        bIsCalcOn = true;
+        document.getElementById('myInput').placeholder = '0.0';
+      }
+
+      function fOffCalcClicked() {
+        bIsCalcOn = false;
+        fClearExpression();
+        document.getElementById('myInput').placeholder = '';
+
+      }
+
+      function fEvaluateExpression() {
+        if (!bIsCalcOn) {
+          return;
+        }
+        let sExpression = document.getElementById('myInput').value;
+        document.getElementById('myInput').value = eval(sExpression);
+
+      }
+
+      function fClearExpression() {
+        document.getElementById('myInput').value = "";
+      }
+    </script>
+</head>
+<body>
+
+<div id="myApp">
+    <div id="nameWrapper">
+        <div class="myAppName">My Calculator</div>
+    </div>
+    <div id="inputWrapper">
+        <input id="myInput" type="text"/>
+    </div>
+    <div id="buttonsWrapper">
+        <table>
+            <tr>
+                <td><input class="myButton row1" type="button" value="On" onclick="fOnCalcClicked()"></td>
+                <td><input class="myButton row1" type="button" value="Off" onclick="fOffCalcClicked()"></td>
+                <td><input class="myButton row5" type="button" value="Clear" onclick="fClearExpression('1')"></td>
+            </tr>
+            <tr>
+                <td><input class="myButton row1" type="button" value="1" onclick="fUpdateInputField('1')"></td>
+                <td><input class="myButton row2" type="button" value="2" onclick="fUpdateInputField('2')"></td>
+                <td><input class="myButton row2" type="button" value="3" onclick="fUpdateInputField('3')"></td>
+            </tr>
+            <tr>
+                <td><input class="myButton row2" type="button" value="4" onclick="fUpdateInputField('4')"></td>
+                <td><input class="myButton row2" type="button" value="5" onclick="fUpdateInputField('5')"></td>
+                <td><input class="myButton row3" type="button" value="6" onclick="fUpdateInputField('6')"></td>
+            </tr>
+            <tr>
+                <td><input class="myButton row3" type="button" value="7" onclick="fUpdateInputField('7')"></td>
+                <td><input class="myButton row3" type="button" value="8" onclick="fUpdateInputField('8')"></td>
+                <td><input class="myButton row3" type="button" value="9" onclick="fUpdateInputField('9')"></td>
+            </tr>
+            <tr>
+                <td><input class="myButton row4" type="button" value="(" onclick="fUpdateInputField('(')"></td>
+                <td><input class="myButton row1" type="button" value="0" onclick="fUpdateInputField('0')"></td>
+                <td><input class="myButton row4" type="button" value=")" onclick="fUpdateInputField(')')"></td>
+            </tr>
+            <tr>
+                <td><input class="myButton row4" type="button" value="." onclick="fUpdateInputField('.')"></td>
+                <td><input class="myButton row4" type="button" value="+" onclick="fUpdateInputField('+')"></td>
+                <td><input class="myButton row4" type="button" value="-" onclick="fUpdateInputField('-')"></td>
+            </tr>
+            <tr>
+                <td><input class="myButton row5" type="button" value="*" onclick="fUpdateInputField('*')"></td>
+                <td><input class="myButton row5" type="button" value="/" onclick="fUpdateInputField('/')"></td>
+                <td><input class="myButton row5" type="button" value="=" onclick="fEvaluateExpression()"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

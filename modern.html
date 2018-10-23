@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Calculator</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            height: 100em;
+            width: 100em;
+            background-image: linear-gradient(to right top, #3d1457, #4d1c64, #5e2572, #702e7f, #82378c);
+        }
+
+        #myApp {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+
+        }
+
+        #nameWrapper {
+            float: left;
+            width: 100%;
+            height: auto;
+        }
+
+        .myAppName{
+            width: calc(100% - 40px);
+            background-image: linear-gradient(to right top, #4b175c, #531a63, #5c1d69, #642070, #6d2376);
+            margin: 0 20px;
+            height: 50px;
+            line-height: 40px;
+            padding: 0 10px;
+            color: #ffffff94;
+        }
+
+        #inputWrapper {
+            float: left;
+            width: 100%;
+        }
+
+        #myInput {
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            font-size: 35px;
+            border: none;
+            padding: 0 10px;
+            background-color: rgb(42,15, 49);
+            color: rgb(244,244, 244);
+            text-align: right;
+        }
+        #myInput:focus{
+            outline: none;
+        }
+
+        #buttonsWrapper {
+            float: left;
+            margin: 0 20px;
+            width: calc(100% - 20px);
+            background-image: linear-gradient(to right top, #1f0638, #2a0b42e8, #36104ce0, #431455ba, #50195fe8);
+            color: rgb(216, 211, 219);
+        }
+
+        .myButton {
+            height: 70px;
+            font-size: 20px;
+            text-align: center;
+            line-height: 70px;
+            transition: 1s all ease;
+        }
+
+        .myButton:hover{
+            box-shadow: 0px 0px 246px 0px rgba(43,12,63,1) inset;
+            -webkit-box-shadow: 0px 0px 246px 0px rgba(43,12,63,1) inset;
+            -moz-box-shadow: 0px 0px 246px 0px rgba(43,12,63,1) inset;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        .myTableRow {
+            display: flex;
+        }
+
+        .myCell {
+            flex: 1;
+        }
+
+
+    </style>
+    <script>
+      let bIsCalcOn = false;
+
+      function fUpdateInputField(sVal) {
+        if (!bIsCalcOn) {
+          return;
+        }
+        document.getElementById('myInput').value += sVal;
+      }
+
+      function fOnCalcClicked() {
+        bIsCalcOn = true;
+        document.getElementById('myInput').placeholder = '0.0';
+      }
+
+      function fOffCalcClicked() {
+        bIsCalcOn = false;
+        fClearExpression();
+        document.getElementById('myInput').placeholder = '';
+
+      }
+
+      function fEvaluateExpression() {
+        if (!bIsCalcOn) {
+          return;
+        }
+        let sExpression = document.getElementById('myInput').value;
+        document.getElementById('myInput').value = eval(sExpression);
+
+      }
+
+      function fClearExpression() {
+        document.getElementById('myInput').value = "";
+      }
+    </script>
+</head>
+<body>
+
+<div id="myApp">
+    <div id="nameWrapper">
+        <div class="myAppName">My Calculator</div>
+    </div>
+    <div id="inputWrapper">
+        <input id="myInput" type="text"/>
+    </div>
+    <div id="buttonsWrapper">
+        <div class="myTableRow">
+            <div class="myCell row1">
+                <div class="myButton" onclick="fOnCalcClicked()">On</div>
+            </div>
+            <div class="myCell row1">
+                <div class="myButton" onclick="fOffCalcClicked()">Off</div>
+            </div>
+            <div class="myCell row1">
+                <div class="myButton" onclick="fUpdateInputField('0')">0</div>
+            </div>
+            <div class="myCell row1">
+                <div class="myButton" onclick="fUpdateInputField('1')">1</div>
+            </div>
+        </div>
+        <div class="myTableRow">
+            <div class="myCell row2">
+                <div class="myButton" onclick="fUpdateInputField('2')">2</div>
+            </div>
+            <div class="myCell row2">
+                <div class="myButton" onclick="fUpdateInputField('3')">3</div>
+            </div>
+            <div class="myCell row2">
+                <div class="myButton" onclick="fUpdateInputField('4')">4</div>
+            </div>
+            <div class="myCell row2">
+                <div class="myButton" onclick="fUpdateInputField('5')">5</div>
+            </div>
+        </div>
+        <div class="myTableRow">
+            <div class="myCell row3">
+                <div class="myButton" onclick="fUpdateInputField('6')">6</div>
+            </div>
+            <div class="myCell row3">
+                <div class="myButton" onclick="fUpdateInputField('7')">7</div>
+            </div>
+            <div class="myCell row3">
+                <div class="myButton" onclick="fUpdateInputField('8')">8</div>
+            </div>
+            <div class="myCell row3">
+                <div class="myButton" onclick="fUpdateInputField('9')">9</div>
+            </div>
+        </div>
+        <div class="myTableRow">
+            <div class="myCell row4">
+                <div class="myButton" onclick="fUpdateInputField('.')">.</div>
+            </div>
+            <div class="myCell row4">
+                <div class="myButton" onclick="fUpdateInputField('(')">(</div>
+            </div>
+            <div class="myCell row4">
+                <div class="myButton" onclick="fUpdateInputField(')')">)</div>
+            </div>
+            <div class="myCell row4">
+                <div class="myButton" onclick="fUpdateInputField('+')">+</div>
+            </div>
+            <div class="myCell row4">
+                <div class="myButton" onclick="fUpdateInputField('-')">-</div>
+            </div>
+        </div>
+        <div class="myTableRow">
+            <div class="myCell row5">
+                <div class="myButton" onclick="fUpdateInputField('*')">*</div>
+            </div>
+            <div class="myCell row5">
+                <div class="myButton" onclick="fUpdateInputField('/')">/</div>
+            </div>
+            <div class="myCell row5">
+                <div class="myButton" onclick="fEvaluateExpression()">=</div>
+            </div>
+            <div class="myCell row5">
+                <div class="myButton" onclick="fClearExpression()">Clear</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
